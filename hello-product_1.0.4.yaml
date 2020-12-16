@@ -1,0 +1,42 @@
+info:
+  version: 1.0.4
+  title: hello-product
+  name: hello-product
+apis:
+  hello1.0.0:
+    $ref: hello_1.0.0.yaml
+plans:
+  default-plan:
+    title: Default Plan
+    description: Default Plan
+    approval: false
+    rate-limits:
+      default:
+        value: 100/1hour
+  my-plan:
+    title: My plan
+    rate-limits:
+      Rate-limit minute:
+        value: 10/1minute
+        hard-limit: false
+      Rate-limit day:
+        value: 1000/1day
+        hard-limit: true
+    burst-limits:
+      New burst-limit:
+        value: 5/1second
+    apis: {}
+gateways:
+- datapower-api-gateway
+product: 1.0.0
+visibility:
+  view:
+    enabled: true
+    type: public
+    tags: []
+    orgs: []
+  subscribe:
+    enabled: true
+    type: authenticated
+    tags: []
+    orgs: []
