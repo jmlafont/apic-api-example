@@ -1,0 +1,114 @@
+swagger: "2.0"
+info:
+  title: hello
+  x-ibm-name: hello
+  version: 1.0.0
+schemes:
+- https
+basePath: /hello
+security:
+- clientID: []
+securityDefinitions:
+  clientID:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+x-ibm-configuration:
+  cors:
+    enabled: true
+  gateway: datapower-api-gateway
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
+  assembly:
+    execute:
+    - invoke:
+        title: invoke
+        version: 2.0.0
+        verb: keep
+        target-url: $(target-url)
+        follow-redirects: false
+        timeout: 60
+        parameter-control:
+          type: blacklist
+          values: []
+        header-control:
+          type: blacklist
+          values: []
+        inject-proxy-headers: true
+  properties:
+    target-url:
+      value: https://run.mocky.io/v3/ae917a1f-68d1-4aa9-b8e5-eba6e691807f
+      description: The URL of the target service
+      encoded: false
+  application-authentication:
+    certificate: false
+  activity-log:
+    success-content: payload
+    error-content: header
+    enabled: true
+  buffering: true
+paths:
+  /test:
+    get:
+      responses:
+        "200":
+          schema:
+            type: string
+          description: success
+  /:
+    get:
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+    put:
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
+    post:
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
+    delete:
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
+    options:
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
+    head:
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
+    patch:
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
