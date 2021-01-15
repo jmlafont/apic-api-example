@@ -1,0 +1,57 @@
+swagger: "2.0"
+info:
+  title: hello world
+  x-ibm-name: hello-world
+  version: 1.0.0
+schemes:
+- https
+basePath: /hello-world
+security:
+- clientID: []
+securityDefinitions:
+  Oauth ext provider:
+    type: oauth2
+    flow: application
+    x-ibm-oauth-provider: test-oauth-ext
+    tokenUrl: https://example.com/oauth2/token
+    scopes:
+      sample_scope: Sample scope description 1
+  clientID:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+x-ibm-configuration:
+  cors:
+    enabled: true
+  gateway: datapower-api-gateway
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
+  assembly:
+    execute:
+    - set-variable:
+        version: 2.0.0
+        title: set-variable
+        actions:
+        - set: message.body
+          value: Hello
+          type: string
+        - set: response.status.code
+          value: 200
+          type: number
+  properties:
+    target-url:
+      value: http://example.com/operation-name
+      description: The URL of the target service
+      encoded: false
+  application-authentication:
+    certificate: false
+paths:
+  /hello:
+    get:
+      responses:
+        "200":
+          schema:
+            type: string
+          description: success
