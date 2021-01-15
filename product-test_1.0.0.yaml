@@ -1,0 +1,35 @@
+info:
+  version: 1.0.0
+  title: product-test
+  name: product-test
+gateways:
+- datapower-api-gateway
+plans:
+  default-plan:
+    rate-limits:
+      default:
+        value: 100/1hour
+    title: Default Plan
+    description: Default Plan
+    approval: false
+  new-plan-1:
+    rate-limits:
+      default:
+        value: 100/1hour
+    title: New Plan 1
+    approval: false
+apis:
+  hello-test1.0.0:
+    $ref: hello-test_1.0.0.yaml
+visibility:
+  view:
+    type: public
+    orgs: []
+    tags: []
+    enabled: true
+  subscribe:
+    type: authenticated
+    orgs: []
+    tags: []
+    enabled: true
+product: 1.0.0
